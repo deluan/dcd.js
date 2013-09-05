@@ -1,7 +1,8 @@
 {
     "name": "dcd",
     "description": "Yet Another Fast Change Directory",
-    "version": "0.0.3",
+    "version": "0.0.4",
+    "preferGlobal": true,
     "license": "GPLv3",
     "author": {
         "name": "Deluan Quintao",
@@ -15,17 +16,17 @@
         "url": "https://github.com/deluan/dcd.js"
     },
     "dependencies": {
-        "underscore": "1.5.1",
-        "binarysearch": "0.2.1",
+        "underscore": "1.5.x",
+        "binarysearch": "0.2.x",
         "path-extra": "0.1.1"
     },
     "devDependencies": {
-        "mocha": "*",
-        "should": "*",
-        "sinon": "1.7.3",
-        "growl": "1.7.0"
+        "mocha": "1.12.x",
+        "should": "1.2.x",
+        "sinon": "1.7.x",
+        "growl": "1.7.x"
     },
-    "engine": "node >= 0.6.6",
+    "engine": "node >= 0.10.7",
     "scripts": {
         "test": "mocha --check-leaks -R spec --require should",
         "test-watch": "mocha -w -G --check-leaks -R min --require should"
