@@ -1,11 +1,14 @@
 {
-    "name": "dcd.js",
+    "name": "dcd",
     "description": "Yet Another Fast Change Directory",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "license": "GPLv3",
     "author": {
         "name": "Deluan Quintao",
         "email": "github@deluan.com.br"
+    },
+    "bin": {
+        "dcd": "./bin/dcd"
     },
     "repository": {
         "type": "git",
