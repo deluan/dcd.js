@@ -7,4 +7,10 @@ if (process.argv.length < 3) {
     process.exit(1);
 }
 
+if (process.argv[2] === "--version") {
+    var pjson = require('../package.json');
+    process.stderr.write("v" + pjson.version + "\n");
+    process.exit(1);
+}
+
 require('../lib/main.js');
