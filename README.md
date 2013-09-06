@@ -1,13 +1,13 @@
-DCD.JS
-======
+dcd
+===
 
-DCD ported to JavaScript, as a Node.JS console app. The original can be found at https://github.com/deluan/dcd
+DCD ported to JavaScript, as a Node.JS console app. The original Free Pascal code can be found at https://github.com/deluan/dcd
 
 ###Yet Another Fast Change Directory based on the honorable NCD
 
 DCD was modeled after Norton Change Directory (NCD). NCD appeared first in The Norton Utilities, Release 4, for DOS in 1987, published by Peter Norton. NCD was written by Brad Kingsbury.
 
-###INSTALLATION
+###Installation
 
 * Install it using NPM:
 
@@ -15,7 +15,7 @@ DCD was modeled after Norton Change Directory (NCD). NCD appeared first in The N
 $ npm install -g dcd
 ```
 
-* Add this to your ~/.profile:
+* Add this to your ```~/.profile```:
 
 ```
 dcd ()
@@ -33,3 +33,7 @@ dcd ()
     esac
 }
 ```
+
+###Windows
+
+Still not working on Windows, but I'm working on it.

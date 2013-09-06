@@ -3,7 +3,7 @@
 var path = require('path');
 
 if (process.argv.length < 3) {
-    process.stderr.write('Usage: ' + path.basename(process.argv[1]) + ' STR\n');
+    process.stderr.write('Usage: ' + path.basename(process.argv[1]) + ' <folder name>\n');
     process.exit(1);
 }
 
