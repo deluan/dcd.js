@@ -26,7 +26,6 @@
         "sinon": "1.7.x",
         "growl": "1.7.x"
     },
-    "os" : [ "!win32" ],
     "engine": "node >= 0.10.7",
     "scripts": {
         "test": "mocha --check-leaks -R spec --require should",
