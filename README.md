@@ -19,7 +19,7 @@ $ npm install -g dcd
 
 * Add this to your ```~/.profile```:
 
-```
+```bash
 dcd ()
 {
     new_path="$(`which dcd` ${@})";
@@ -39,12 +39,12 @@ dcd ()
 ###Usage
 
 * First you need to scan your folder tree (this is a slow process, at least for now):
-```
+```bash
     $ dcd -r
 ```
 
 * Using directories bread crumbs:
-```
+```bash
     To go to /usr/local/bin:
     $ dcd ulb
 
@@ -56,7 +56,7 @@ dcd ()
 ```
 
 * Using folder name match:
-```
+```bash
     To go to /Users/joe/Documents/Etc
     $ dcd Etc
 
@@ -65,7 +65,7 @@ dcd ()
 ```
 
 * If it's not what you want, repeat the command:
-```
+```bash
     To go to /usr/local/bin:
     $ dcd ulb
     /usr/llvm-gcc-4.2/bin
