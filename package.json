@@ -8,7 +8,7 @@
         "name": "Deluan Quintao",
         "email": "github@deluan.com.br"
     },
-    "keywords": ["cli", "ncd"],
+    "keywords": ["cli", "cd", "console", "terminal", "ncd"],
     "bin": {
         "dcd": "./bin/dcd"
     },
