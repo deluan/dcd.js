@@ -11,14 +11,12 @@ DCD was modeled after [Norton Change Directory (NCD)](http://www.softpanorama.or
 
 ###Installation
 
-* Install it using NPM:
-
+* Install it using [NPM](http://nodejs.org/).
 ```
 $ npm install -g dcd
 ```
 
 * Add this to your ```~/.profile```:
-
 ```bash
 dcd ()
 {
