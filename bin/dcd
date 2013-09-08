@@ -2,15 +2,19 @@
 
 var path = require('path');
 
+function libPath(file) {
+    return "../lib/" + file;
+}
+
 if (process.argv.length < 3) {
     process.stderr.write('Usage: ' + path.basename(process.argv[1]) + ' <folder name>\n');
     process.exit(1);
 }
 
 if (process.argv[2] === "--version") {
-    var pjson = require('../package.json');
+    var pjson = require(libPath('../package.json'));
     process.stderr.write("v" + pjson.version + "\n");
     process.exit(1);
 }
 
-require('../lib/main.js');
+require(libPath('main.js'));
