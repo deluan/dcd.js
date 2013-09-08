@@ -1,7 +1,7 @@
 {
     "name": "dcd",
     "description": "Yet Another Fast Change Directory",
-    "version": "0.0.8",
+    "version": "0.0.9-SNAPSHOT",
     "preferGlobal": true,
     "license": "GPLv3",
     "author": {
