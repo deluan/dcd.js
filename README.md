@@ -1,5 +1,6 @@
 dcd
 ===
+[![Build Status](https://travis-ci.org/deluan/dcd.png?branch=master)](https://travis-ci.org/deluan/dcd)
 [![NPM version](https://badge.fury.io/js/dcd.png)](http://badge.fury.io/js/dcd)
 
 DCD ported to JavaScript, as a Node.JS console app. The original Free Pascal code can be found at https://github.com/deluan/dcd
