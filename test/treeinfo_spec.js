@@ -4,6 +4,7 @@ var sinon = require('sinon');
 var util = require('../lib/util');
 var config = require('../lib/config');
 var treeinfo = require('../lib/treeinfo');
+var scan_tree = require('../lib/scan_tree');
 
 describe('treeinfo', function () {
     var tree = [];
@@ -12,7 +13,7 @@ describe('treeinfo', function () {
         config.treeFile = sinon.stub().returns("INVALID_FILE");
         treeinfo._readTreeFile = sinon.stub().throws(new Error());
         treeinfo._writeTreeFile = sinon.stub();
-        util.recurseTree = function(root, progress) {
+        scan_tree.fullScan = function(root, progress) {
             tree.forEach(function (dir) {
                 progress(1, dir);
             });
