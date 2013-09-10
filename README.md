@@ -18,7 +18,7 @@ DCD was modeled after [Norton Change Directory (NCD)](http://www.softpanorama.or
 $ npm install -g dcd
 ```
 
-* Add this to your ```~/.profile```:
+* Add this to your ```~/.bash_profile``` (or ```~/.profile```):
 ```bash
 dcd ()
 {
