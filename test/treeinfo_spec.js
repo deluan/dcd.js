@@ -2,12 +2,14 @@ var fs = require('fs');
 var path = require('path');
 var sinon = require('sinon');
 var util = require('../lib/util');
+var config = require('../lib/config');
 var treeinfo = require('../lib/treeinfo');
 
 describe('treeinfo', function () {
     var tree = [];
 
     before(function () {
+        config.treeFile = sinon.stub().returns("INVALID_FILE");
         treeinfo._readTreeFile = sinon.stub().throws(new Error());
         treeinfo._writeTreeFile = sinon.stub();
         util.recurseTree = function(root, progress) {
