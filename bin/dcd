@@ -17,4 +17,27 @@ if (process.argv[2] === "--version") {
     process.exit(1);
 }
 
+
+if (process.argv[2] === "--install-sh") {
+    var fs = require('fs');
+    var exePath = fs.realpathSync(__filename);
+	console.log([
+		'dcd ()',
+		'{',
+		'    new_path="$(' + exePath + ' ${@})";',
+		'    case $? in',
+		'        0)',
+		'            echo -e "\\033[31m${new_path}\\033[0m";',
+		'            cd "${new_path}"',
+		'        ;;',
+		'        2)',
+		'            echo "dcd: directory \'${@}\' not found";',
+		'            echo "Try \`dcd -r\` to update db."',
+		'        ;;',
+		'    esac',
+		'}'
+	].join("\n"));
+	process.exit(1);
+}
+
 require(libPath('main.js'));

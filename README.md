@@ -18,27 +18,15 @@ DCD was modeled after [Norton Change Directory (NCD)](http://www.softpanorama.or
 $ npm install -g dcd
 ```
 
-* Add this to your ```~/.bash_profile``` (or ```~/.profile```):
+* Open Terminal and run this one-liner:
 ```bash
-dcd ()
-{
-    new_path="$(`which dcd` ${@})";
-    case $? in
-        0)
-            echo -e "\\033[31m${new_path}\\033[0m";
-            cd "${new_path}"
-        ;;
-        2)
-            echo "dcd: directory '${@}' not found";
-            echo "Try \`dcd -r\` to update db."
-        ;;
-    esac
-}
+echo 'DCD=`which dcd` && eval "`${DCD} --install-sh`"' >> ~/.bash_profile && . ~/.bash_profile
 ```
+  or add this manually to your ~/.bash_profile: ```DCD=`which dcd` && eval "`${DCD} --install-sh`"```
 
 ###Usage
 
-* First you need to scan your folder tree (this is a slow process, at least for now):
+* First you need to scan your folder tree (this is a slow process):
 ```bash
     $ dcd -r
 ```
