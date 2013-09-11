@@ -27,6 +27,7 @@
     "underscore": "1.5.x",
     "binarysearch": "0.2.x",
     "path-extra": "0.1.1",
+    "commander": "2.0.0",
     "mkdirp": "0.3.5",
     "publish": "git://github.com/deluan/node-publish.git"
   },

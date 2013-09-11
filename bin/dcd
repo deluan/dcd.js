@@ -1,43 +1,64 @@
 #!/usr/bin/env node
 
+var program = require('commander');
 var path = require('path');
+var fs = require('fs');
 
 function libPath(file) {
     return "../lib/" + file;
 }
 
-if (process.argv.length < 3) {
-    process.stderr.write('Usage: ' + path.basename(process.argv[1]) + ' <folder name>\n');
-    process.exit(1);
-}
+var packageJson = require(libPath('../package.json'));
 
-if (process.argv[2] === "--version") {
-    var pjson = require(libPath('../package.json'));
-    process.stderr.write("v" + pjson.version + "\n");
-    process.exit(1);
-}
+program.name = packageJson.name;
+program
+    .version(packageJson.version)
+    .usage('[options] [string]')
+    .option('-r, --rescan', 'rescans the directory tree')
+    .option('--install-sh [command name]', 'output the shell helper (see README)')
+    .parse(process.argv);
 
-
-if (process.argv[2] === "--install-sh") {
-    var fs = require('fs');
+if (program.installSh) {
+    var cmd_name = packageJson.name;
+    if (typeof program.installSh === "string") {
+        cmd_name = program.installSh;
+    }
     var exePath = fs.realpathSync(__filename);
 	console.log([
-		'dcd ()',
+		cmd_name + ' ()',
 		'{',
-		'    new_path="$(' + exePath + ' ${@})";',
+		'    output="$(' + exePath + ' ${@})";',
 		'    case $? in',
-		'        0)',
-		'            echo -e "\\033[31m${new_path}\\033[0m";',
+		'        1)',
+		'            echo -e "\\033[31m${output}\\033[0m";',
 		'            cd "${new_path}"',
 		'        ;;',
-		'        2)',
-		'            echo "dcd: directory \'${@}\' not found";',
-		'            echo "Try \`dcd -r\` to update db."',
-		'        ;;',
+        '        0)',
+        '            echo "${output}"',
+        '        ;;',
 		'    esac',
 		'}'
 	].join("\n"));
-	process.exit(1);
+	process.exit(0);
 }
 
-require(libPath('main.js'));
+if (program.args.length === 0) {
+    program.help();
+}
+
+var treeinfo = require(libPath('treeinfo'));
+
+if (program.rescan) {
+    treeinfo.rescan();
+} else {
+    var searchString = program.args[0];
+    var result = treeinfo.find(searchString);
+    if (result !== '') {
+        console.log(result);
+        process.exit(1);
+    } else {
+        console.log("directory \'${@}\' not found");
+        console.log("Try `dcd -r` to update db.");
+        process.exit(0);
+    }
+}
