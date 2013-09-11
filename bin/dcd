@@ -42,7 +42,7 @@ if (program.installSh) {
 	process.exit(0);
 }
 
-if (program.args.length === 0) {
+if (process.argv.length < 3) {
     program.help();
 }
 
@@ -54,11 +54,16 @@ if (program.rescan) {
     var searchString = program.args[0];
     var result = treeinfo.find(searchString);
     if (result !== '') {
-        console.log(result);
-        process.exit(1);
+        try {
+            process.chdir(result);
+            console.log(result);
+            process.exit(1);
+        } catch (err) {
+            console.log("directory \'" + result + "\' not found");
+            console.log("Try `dcd -r` to update db.");
+        }
     } else {
-        console.log("directory \'${@}\' not found");
+        console.log("'" + searchString + "' not found");
         console.log("Try `dcd -r` to update db.");
-        process.exit(0);
     }
 }
