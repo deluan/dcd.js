@@ -31,7 +31,7 @@ if (program.installSh) {
 		'    case $? in',
 		'        1)',
 		'            echo -e "\\033[31m${output}\\033[0m";',
-		'            cd "${new_path}"',
+		'            cd "${output}"',
 		'        ;;',
         '        0)',
         '            echo "${output}"',
