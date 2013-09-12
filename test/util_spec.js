@@ -55,4 +55,10 @@ describe('util', function () {
         });
     });
 
+    describe('#renderTemplate', function () {
+        it('renders the template with the correct values', function () {
+            var output = util.renderTemplate("test/test.template", {var1: "abc", var2: "a/b/c"});
+            output.should.be.equal("abc a/b/c");
+        });
+    });
 });

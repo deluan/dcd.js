@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 
-var program = require('commander');
-var path = require('path');
 var fs = require('fs');
+var path = require('path');
+var program = require('commander');
 
 function libPath(file) {
     return "../lib/" + file;
@@ -20,26 +20,17 @@ program
     .parse(process.argv);
 
 if (program.installSh) {
-    var cmd_name = packageJson.name;
+    var util = require(libPath('util'));
+
+    var cmdName = packageJson.name;
     if (typeof program.installSh === "string") {
-        cmd_name = program.installSh;
+        cmdName = program.installSh;
     }
-    var exePath = fs.realpathSync(__filename);
-	console.log([
-		cmd_name + ' ()',
-		'{',
-		'    output="$(' + exePath + ' ${@})";',
-		'    case $? in',
-		'        1)',
-		'            echo -e "\\033[31m${output}\\033[0m";',
-		'            cd "${output}"',
-		'        ;;',
-        '        0)',
-        '            echo "${output}"',
-        '        ;;',
-		'    esac',
-		'}'
-	].join("\n"));
+    var output = util.renderTemplate("install-sh.template", {
+        cmdName: cmdName,
+        exePath: fs.realpathSync(__filename)
+    });
+	console.log(output);
 	process.exit(0);
 }
 
