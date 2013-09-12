@@ -29,14 +29,14 @@
     "path-extra": "0.1.1",
     "commander": "2.0.0",
     "mkdirp": "0.3.5",
-    "mustache": "0.7.2",
-    "publish": "git://github.com/deluan/node-publish.git"
+    "mustache": "0.7.2"
   },
   "devDependencies": {
     "mocha": "1.12.x",
     "chai": "1.7.x",
     "sinon": "1.7.x",
     "sinon-chai": "2.4.x",
+    "publish": "git://github.com/deluan/node-publish.git",
     "growl": "1.7.x"
   },
   "os": [
