@@ -1,36 +1,51 @@
 {
-    "name": "dcd",
-    "description": "Yet Another Fast Change Directory",
-    "version": "0.0.9-SNAPSHOT",
-    "preferGlobal": true,
-    "license": "GPLv3",
-    "author": {
-        "name": "Deluan Quintao",
-        "email": "github@deluan.com.br"
-    },
-    "keywords": ["cli", "cd", "console", "terminal", "ncd"],
-    "bin": {
-        "dcd": "./bin/dcd"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/deluan/dcd.js"
-    },
-    "dependencies": {
-        "underscore": "1.5.x",
-        "binarysearch": "0.2.x",
-        "path-extra": "0.1.1"
-    },
-    "devDependencies": {
-        "mocha": "1.12.x",
-        "should": "1.2.x",
-        "sinon": "1.7.x",
-        "growl": "1.7.x"
-    },
-    "os": [ "!win32" ],
-    "engine": "node >= 0.10.7",
-    "scripts": {
-        "test": "mocha --check-leaks -R spec --require should",
-        "test-watch": "mocha -w -G --check-leaks -R min --require should"
-    }
+  "name": "dcd",
+  "description": "Yet Another Fast Change Directory",
+  "version": "0.1.0",
+  "preferGlobal": true,
+  "license": "GPLv3",
+  "author": {
+    "name": "Deluan Quintao",
+    "email": "github@deluan.com.br"
+  },
+  "keywords": [
+    "cli",
+    "cd",
+    "chdir",
+    "console",
+    "terminal",
+    "ncd"
+  ],
+  "bin": {
+    "dcd": "./bin/dcd"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/deluan/dcd.js"
+  },
+  "dependencies": {
+    "underscore": "1.5.x",
+    "binarysearch": "0.2.x",
+    "path-extra": "0.1.1",
+    "commander": "2.0.0",
+    "mkdirp": "0.3.5",
+    "mustache": "0.7.2"
+  },
+  "devDependencies": {
+    "mocha": "1.12.x",
+    "chai": "1.7.x",
+    "sinon": "1.7.x",
+    "sinon-chai": "2.4.x",
+    "publish": "git://github.com/deluan/node-publish.git",
+    "growl": "1.7.x"
+  },
+  "os": [
+    "!win32"
+  ],
+  "engine": "node >= 0.10.7",
+  "scripts": {
+    "test": "mocha --check-leaks -R spec",
+    "watch": "mocha -w -G --check-leaks -R min",
+    "posttest": "publish --ignore-suffix devel --on-patch"
+  }
 }

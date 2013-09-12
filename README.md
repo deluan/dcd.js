@@ -1,5 +1,7 @@
 dcd
 ===
+[![Build Status](https://travis-ci.org/deluan/dcd.js.png?branch=master)](https://travis-ci.org/deluan/dcd.js)
+[![NPM version](https://badge.fury.io/js/dcd.png)](http://badge.fury.io/js/dcd)
 
 DCD ported to JavaScript, as a Node.JS console app. The original Free Pascal code can be found at https://github.com/deluan/dcd
 
@@ -16,27 +18,15 @@ DCD was modeled after [Norton Change Directory (NCD)](http://www.softpanorama.or
 $ npm install -g dcd
 ```
 
-* Add this to your ```~/.profile```:
+* Open Terminal and run this one-liner:
 ```bash
-dcd ()
-{
-    new_path="$(`which dcd` ${@})";
-    case $? in
-        0)
-            echo -e "\\033[31m${new_path}\\033[0m";
-            cd "${new_path}"
-        ;;
-        2)
-            echo "dcd: directory '${@}' not found";
-            echo "Try \`dcd -r\` to update db."
-        ;;
-    esac
-}
+echo 'DCD=`which dcd` && eval "`${DCD} --install-sh`"' >> ~/.bash_profile && . ~/.bash_profile
 ```
+  or add this manually to your ~/.bash_profile: ```DCD=`which dcd` && eval "`${DCD} --install-sh`"```
 
 ###Usage
 
-* First you need to scan your folder tree (this is a slow process, at least for now):
+* Before using it, you need to scan your folder tree (the first time is very slow):
 ```bash
     $ dcd -r
 ```
@@ -73,4 +63,4 @@ dcd ()
 
 ###Windows
 
-Still not working on Windows. Check back soon.
+Still not working on Windows. Check back later.

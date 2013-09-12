@@ -1,20 +1,60 @@
 #!/usr/bin/env node
 
+var fs = require('fs');
 var path = require('path');
+var program = require('commander');
 
 function libPath(file) {
     return "../lib/" + file;
 }
 
+var packageJson = require(libPath('../package.json'));
+
+program.name = packageJson.name;
+program
+    .version(packageJson.version)
+    .usage('[options] [string]')
+    .option('-r, --rescan', 'rescans the directory tree')
+    .option('--full-rescan', 'forces a full (slow) rescan of the directory tree')
+    .option('--install-sh [command name]', 'output the shell helper (see README)')
+    .parse(process.argv);
+
+if (program.installSh) {
+    var util = require(libPath('util'));
+
+    var cmdName = packageJson.name;
+    if (typeof program.installSh === "string") {
+        cmdName = program.installSh;
+    }
+    var output = util.renderTemplate("install-sh.template", {
+        cmdName: cmdName,
+        exePath: fs.realpathSync(__filename)
+    });
+	console.log(output);
+	process.exit(0);
+}
+
 if (process.argv.length < 3) {
-    process.stderr.write('Usage: ' + path.basename(process.argv[1]) + ' <folder name>\n');
-    process.exit(1);
+    program.help();
 }
 
-if (process.argv[2] === "--version") {
-    var pjson = require(libPath('../package.json'));
-    process.stderr.write("v" + pjson.version + "\n");
-    process.exit(1);
+var treeinfo = require(libPath('treeinfo'));
+if (program.rescan || program.fullRescan) {
+    treeinfo.rescan(program.fullRescan);
+} else {
+    var searchString = program.args[0];
+    var result = treeinfo.find(searchString);
+    if (result !== '') {
+        try {
+            process.chdir(result);
+            console.log(result);
+            process.exit(1);
+        } catch (err) {
+            console.log("directory \'" + result + "\' not found");
+            console.log("Try `dcd -r` to update db.");
+        }
+    } else {
+        console.log("'" + searchString + "' not found");
+        console.log("Try `dcd -r` to update db.");
+    }
 }
-
-require(libPath('main.js'));
