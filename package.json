@@ -34,8 +34,9 @@
   },
   "devDependencies": {
     "mocha": "1.12.x",
-    "should": "1.2.x",
+    "chai": "1.7.x",
     "sinon": "1.7.x",
+    "sinon-chai": "2.4.x",
     "growl": "1.7.x"
   },
   "os": [
@@ -43,8 +44,8 @@
   ],
   "engine": "node >= 0.10.7",
   "scripts": {
-    "test": "mocha --check-leaks -R spec --require should",
-    "watch": "mocha -w -G --check-leaks -R min --require should",
+    "test": "mocha --check-leaks -R spec",
+    "watch": "mocha -w -G --check-leaks -R min",
     "posttest": "publish --ignore-suffix devel --on-patch"
   }
 }

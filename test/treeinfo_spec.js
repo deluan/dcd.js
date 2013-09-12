@@ -1,11 +1,16 @@
 var fs = require('fs');
 var path = require('path');
-var sinon = require('sinon');
-var should = require('should');
 var util = require('../lib/util');
 var config = require('../lib/config');
 var treeinfo = require('../lib/treeinfo');
 var scan_tree = require('../lib/scan_tree');
+
+var sinon = require('sinon');
+var sinonChai = require("sinon-chai");
+var chai = require('chai');
+var should = chai.should()
+
+chai.use(sinonChai);
 
 describe('treeinfo', function () {
     var tree = [];
@@ -85,7 +90,7 @@ describe('treeinfo', function () {
 
         treeinfo.rescan();
 
-        should.exists(scan_tree.scan.getCall(0).args[1]);
+        should.exist(scan_tree.scan.getCall(0).args[1]);
     });
 
     it('forces full rescan if told so', function() {
@@ -93,7 +98,7 @@ describe('treeinfo', function () {
 
         treeinfo.rescan(true);
 
-        should.not.exists(scan_tree.scan.getCall(0).args[1]);
+        should.not.exist(scan_tree.scan.getCall(0).args[1]);
     });
 });
 
