@@ -26,7 +26,7 @@ echo 'DCD=`which dcd` && eval "`${DCD} --install-sh`"' >> ~/.bash_profile && . ~
 
 ###Usage
 
-* First you need to scan your folder tree (this is a slow process):
+* Before using it, you need to scan your folder tree (the first time is very slow):
 ```bash
     $ dcd -r
 ```
@@ -63,4 +63,4 @@ echo 'DCD=`which dcd` && eval "`${DCD} --install-sh`"' >> ~/.bash_profile && . ~
 
 ###Windows
 
-Still not working on Windows. Check back soon.
+Still not working on Windows. Check back later.
