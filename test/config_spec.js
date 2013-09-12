@@ -16,7 +16,6 @@ describe('config', function(){
     describe('#scanRootDir', function(){
         it('returns an existing path', function() {
             var scanRootDir = config.scanRootDir();
-            console.log(scanRootDir);
             should.exists(scanRootDir);
             fs.statSync(path.dirname(scanRootDir)).isDirectory().should.be.true;
         });

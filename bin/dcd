@@ -15,6 +15,7 @@ program
     .version(packageJson.version)
     .usage('[options] [string]')
     .option('-r, --rescan', 'rescans the directory tree')
+    .option('--full-rescan', 'forces a full (slow) rescan of the directory tree')
     .option('--install-sh [command name]', 'output the shell helper (see README)')
     .parse(process.argv);
 
@@ -47,9 +48,8 @@ if (process.argv.length < 3) {
 }
 
 var treeinfo = require(libPath('treeinfo'));
-
-if (program.rescan) {
-    treeinfo.rescan();
+if (program.rescan || program.fullRescan) {
+    treeinfo.rescan(program.fullRescan);
 } else {
     var searchString = program.args[0];
     var result = treeinfo.find(searchString);
