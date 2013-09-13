@@ -1,7 +1,7 @@
 {
   "name": "dcd",
   "description": "Yet Another Fast Change Directory",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "preferGlobal": true,
   "license": "GPLv3",
   "author": {
@@ -36,7 +36,7 @@
     "chai": "1.7.x",
     "sinon": "1.7.x",
     "sinon-chai": "2.4.x",
-    "publish": "git://github.com/deluan/node-publish.git",
+    "publish": "0.3.x",
     "growl": "1.7.x"
   },
   "os": [
