@@ -1,7 +1,10 @@
 {{&cmdName}} ()
 {
-    #output="$({{&exePath}} ${@})";
-    output=`{{&exePath}} "$@"`;
+    if [ -z "$DCD_EXCLUDES" ]; then
+        output=`{{&exePath}} "$@"`;
+    else
+        output=`{{&exePath}} -X "$DCD_EXCLUDES" "$@"`;
+    fi
     case $? in
         1)
             echo -e "\\033[31m${output}\\033[0m";
