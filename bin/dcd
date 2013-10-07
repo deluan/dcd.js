@@ -16,6 +16,7 @@ program
     .usage('[options] [string]')
     .option('-r, --rescan', 'rescans the directory tree')
     .option('    --full-rescan', 'forces a full (slow) rescan of the directory tree')
+    .option('-X, --scan-excludes <dirmask1:dirmask2:...>', 'excludes given paths from scan (uses glob syntax)')
     .option('    --install-sh [command name]', 'output the shell helper (see README)')
     .parse(process.argv);
 
@@ -30,8 +31,8 @@ if (program.installSh) {
         cmdName: cmdName,
         exePath: fs.realpathSync(__filename)
     });
-	console.log(output);
-	process.exit(0);
+    console.log(output);
+    process.exit(0);
 }
 
 if (process.argv.length < 3) {
@@ -40,7 +41,7 @@ if (process.argv.length < 3) {
 
 var treeinfo = require(libPath('treeinfo'));
 if (program.rescan || program.fullRescan) {
-    treeinfo.rescan(program.fullRescan);
+    treeinfo.rescan(program.fullRescan, program.scanExcludes);
 } else {
     var searchString = program.args[0];
     var result = treeinfo.find(searchString);

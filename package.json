@@ -29,7 +29,8 @@
     "path-extra": "0.1.1",
     "commander": "2.0.0",
     "mkdirp": "0.3.5",
-    "mustache": "0.7.2"
+    "mustache": "0.7.2",
+    "glob-trie.js": "~0.2.1"
   },
   "devDependencies": {
     "mocha": "1.12.x",

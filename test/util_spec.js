@@ -63,4 +63,36 @@ describe('util', function () {
             expect(output).to.be.equal("abc a/b/c");
         });
     });
+
+    describe('#match', function () {
+
+        it('returns true on glob match', function () {
+            var path = '/Users/Thoughtworker/Desktop/Pictures/iPhoto Library/Database/Versions/2011/10/30/20111030-002818/xxOumvDJR9qRiaV3KZ0TlQ/abc';
+            var exclusions = ['/*/iPhoto Library/Database/Versions/*']
+            var result = util.match(path, exclusions);
+            expect(result).to.be.equal(true);
+        });
+
+        it('returns false on empty pattern list', function () {
+            var path = '/Users/Thoughtworker/Desktop/Pictures/iPhoto Library/Database/Versions/2011/10/30/20111030-002818/xxOumvDJR9qRiaV3KZ0TlQ/abc';
+            var exclusions = []
+            var result = util.match(path, exclusions);
+            expect(result).to.be.equal(false);
+        });
+
+        it('returns false when there is no match', function () {
+            var path = '/usr/local/bin';
+            var exclusions = ['/*/iPhoto Library/Database/Versions/*']
+            var result = util.match(path, exclusions);
+            expect(result).to.be.equal(false);
+        });
+
+        it('returns true when at least one pattern matches', function () {
+            var path = '/Users/Thoughtworker/Desktop/Pictures/iPhoto Library/Database/Versions/2011/10/30/20111030-002818/xxOumvDJR9qRiaV3KZ0TlQ/abc';
+            var exclusions = ['/abc/*', '/*/iPhoto Library/Database/Versions/*']
+            var result = util.match(path, exclusions);
+            expect(result).to.be.equal(true);
+        });
+
+    });
 });

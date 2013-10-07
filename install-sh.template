@@ -1,6 +1,7 @@
 {{&cmdName}} ()
 {
-    output="$({{&exePath}} ${@})";
+    #output="$({{&exePath}} ${@})";
+    output=`{{&exePath}} "$@"`;
     case $? in
         1)
             echo -e "\\033[31m${output}\\033[0m";

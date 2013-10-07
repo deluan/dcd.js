@@ -16,5 +16,6 @@ node_modules
 results
 .idea
 *.iml
+Vagrantfile
 
 npm-debug.log
