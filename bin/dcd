@@ -3,6 +3,8 @@
 var fs = require('fs');
 var path = require('path');
 var program = require('commander');
+var treeinfo = require(libPath('treeinfo'));
+
 
 function libPath(file) {
     return "../lib/" + file;
@@ -15,8 +17,9 @@ program
     .version(packageJson.version)
     .usage('[options] [string]')
     .option('-r, --rescan', 'rescans the directory tree')
-    .option('--full-rescan', 'forces a full (slow) rescan of the directory tree')
-    .option('--install-sh [command name]', 'output the shell helper (see README)')
+    .option('    --full-rescan', 'forces a full (slow) rescan of the directory tree')
+    .option('-X, --scan-excludes <dirmask1:dirmask2:...>', 'excludes given paths from scan (uses glob syntax)')
+    .option('    --install-sh [command name]', 'output the shell helper (see README)')
     .parse(process.argv);
 
 if (program.installSh) {
@@ -30,17 +33,14 @@ if (program.installSh) {
         cmdName: cmdName,
         exePath: fs.realpathSync(__filename)
     });
-	console.log(output);
-	process.exit(0);
+    console.log(output);
+    process.exit(0);
 }
 
-if (process.argv.length < 3) {
-    program.help();
-}
-
-var treeinfo = require(libPath('treeinfo'));
 if (program.rescan || program.fullRescan) {
-    treeinfo.rescan(program.fullRescan);
+    treeinfo.rescan(program.fullRescan, program.scanExcludes);
+} else if (program.args.length != 1) {
+    program.help();
 } else {
     var searchString = program.args[0];
     var result = treeinfo.find(searchString);

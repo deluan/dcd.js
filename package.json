@@ -1,7 +1,7 @@
 {
   "name": "dcd",
   "description": "Yet Another Fast Change Directory",
-  "version": "0.1.0",
+  "version": "0.3.1",
   "preferGlobal": true,
   "license": "GPLv3",
   "author": {
@@ -29,14 +29,15 @@
     "path-extra": "0.1.1",
     "commander": "2.0.0",
     "mkdirp": "0.3.5",
-    "mustache": "0.7.2"
+    "mustache": "0.7.2",
+    "glob-trie.js": "~0.2.1"
   },
   "devDependencies": {
     "mocha": "1.12.x",
     "chai": "1.7.x",
     "sinon": "1.7.x",
     "sinon-chai": "2.4.x",
-    "publish": "git://github.com/deluan/node-publish.git",
+    "publish": "0.3.x",
     "growl": "1.7.x"
   },
   "os": [
